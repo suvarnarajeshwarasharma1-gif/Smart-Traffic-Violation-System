@@ -2,75 +2,111 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Smart Traffic Violation System</title>
 
     <link rel="stylesheet" href="style.css">
 
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-    <!-- SIDEBAR -->
+    <!-- ================= SIDEBAR ================= -->
 
-    <div class="sidebar">
+    <aside class="sidebar">
 
-        <h2>🚦 Smart Traffic</h2>
-
-        <a href="#" onclick="showPage('dashboard')">
-            🏠 Dashboard
-        </a>
-
-        <a href="#" onclick="showPage('report')">
-            📝 Report Violation
-        </a>
-
-        <a href="#" onclick="showPage('violations')">
-            🚨 Violations
-        </a>
-
-        <a href="#" onclick="showPage('statistics')">
-            📊 Statistics
-        </a>
-
-        <a href="#" onclick="showPage('profile')">
-            👤 Profile
-        </a>
-
-    </div>
-
-
-    <!-- MAIN CONTENT -->
-
-    <div class="main">
-
-        <!-- HEADER -->
-
-        <header>
+        <div class="logo">
+            <div class="logo-icon">🚦</div>
 
             <div>
+                <h2>Smart Traffic</h2>
+                <span>Violation System</span>
+            </div>
+        </div>
 
-                <h1>Smart Traffic Violation System</h1>
+        <nav class="sidebar-menu">
 
-                <p>
+            <button class="menu-item active" onclick="showPage('dashboard', this)">
+                <span>📊</span>
+                Dashboard
+            </button>
+
+            <button class="menu-item" onclick="showPage('report', this)">
+                <span>📝</span>
+                Report Violation
+            </button>
+
+            <button class="menu-item" onclick="showPage('violations', this)">
+                <span>📋</span>
+                Violations
+            </button>
+
+            <button class="menu-item" onclick="showPage('statistics', this)">
+                <span>📈</span>
+                Statistics
+            </button>
+
+            <button class="menu-item" onclick="showPage('profile', this)">
+                <span>👤</span>
+                Profile
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+                System Online
+            </div>
+
+            <p>© 2026 Smart Traffic</p>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+
+        <!-- ================= HEADER ================= -->
+
+        <header class="top-header">
+
+            <div class="header-title">
+
+                <h1 id="pageTitle">Dashboard</h1>
+
+                <p id="pageSubtitle">
                     Monitor and manage traffic violations
                 </p>
 
             </div>
 
-            <div class="user">
+            <div class="header-user">
 
-                <div class="avatar">
-                    A
+                <div class="notification-icon" onclick="showNotification('No new notifications')">
+                    🔔
                 </div>
 
-                <div>
-                    <b>Admin User</b>
-                    <small>Traffic Officer</small>
+                <div class="user-info">
+
+                    <div class="user-avatar">
+                        AU
+                    </div>
+
+                    <div>
+                        <strong>Admin User</strong>
+                        <small>Traffic Officer</small>
+                    </div>
+
                 </div>
 
             </div>
@@ -78,183 +114,485 @@
         </header>
 
 
-        <!-- DASHBOARD -->
+        <!-- ================================================= -->
+        <!-- ================= DASHBOARD PAGE ================= -->
+        <!-- ================================================= -->
 
-        <section id="dashboard" class="page">
+        <section id="dashboard" class="page active-page">
 
-            <h2>Dashboard</h2>
+            <!-- Statistics Cards -->
 
-            <p class="subtitle">
-                Overview of traffic violation reports
-            </p>
+            <div class="stats-grid">
 
+                <div class="stat-card">
 
-            <div class="cards">
+                    <div class="stat-icon blue">
+                        📋
+                    </div>
 
-                <div class="card">
-                    <span>🚨</span>
-                    <h3>Total Violations</h3>
-                    <h2 id="totalCount">0</h2>
+                    <div>
+                        <span>Total Violations</span>
+                        <h2 id="totalViolations">0</h2>
+                    </div>
+
                 </div>
 
 
-                <div class="card">
-                    <span>⏳</span>
-                    <h3>Pending</h3>
-                    <h2 id="pendingCount">0</h2>
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        ⏳
+                    </div>
+
+                    <div>
+                        <span>Pending</span>
+                        <h2 id="pendingViolations">0</h2>
+                    </div>
+
                 </div>
 
 
-                <div class="card">
-                    <span>🔍</span>
-                    <h3>Under Review</h3>
-                    <h2 id="reviewCount">0</h2>
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        🔍
+                    </div>
+
+                    <div>
+                        <span>Under Review</span>
+                        <h2 id="reviewViolations">0</h2>
+                    </div>
+
                 </div>
 
 
-                <div class="card">
-                    <span>✅</span>
-                    <h3>Resolved</h3>
-                    <h2 id="resolvedCount">0</h2>
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✅
+                    </div>
+
+                    <div>
+                        <span>Resolved</span>
+                        <h2 id="resolvedViolations">0</h2>
+                    </div>
+
                 </div>
 
             </div>
 
 
+            <!-- Welcome Section -->
+
             <div class="welcome-box">
 
-                <h2>Welcome to Smart Traffic 🚦</h2>
+                <div class="welcome-content">
 
-                <p>
-                    This system helps traffic officers report,
-                    monitor and manage traffic violations
-                    efficiently.
-                </p>
+                    <span class="welcome-label">
+                        TRAFFIC MANAGEMENT
+                    </span>
+
+                    <h2>
+                        Smart Traffic Monitoring
+                    </h2>
+
+                    <p>
+                        Monitor reported traffic violations, review cases,
+                        and manage violation records from one centralized system.
+                    </p>
+
+                    <button
+                        class="primary-button"
+                        onclick="showPage('report')"
+                    >
+                        + Report New Violation
+                    </button>
+
+                </div>
+
+                <div class="welcome-icon">
+                    🚦
+                </div>
+
+            </div>
+
+
+            <!-- Dashboard Overview -->
+
+            <div class="dashboard-overview">
+
+
+                <!-- Recent Violations -->
+
+                <div class="dashboard-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Recent Violations</h3>
+                            <p>Latest reported traffic violations</p>
+                        </div>
+
+                        <button
+                            class="view-all-button"
+                            onclick="showPage('violations')"
+                        >
+                            View All
+                        </button>
+
+                    </div>
+
+                    <div id="recentViolationsList">
+
+                        <div class="empty-message">
+                            No recent violations
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- High Priority Alerts -->
+
+                <div class="dashboard-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>High Priority Alerts</h3>
+                            <p>Violations requiring attention</p>
+                        </div>
+
+                    </div>
+
+                    <div id="highPriorityList">
+
+                        <div class="alert-empty">
+                            No high priority violations
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Charts -->
+
+            <div class="dashboard-overview">
+
+
+                <!-- Violation Type Summary -->
+
+                <div class="dashboard-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Violation Type Summary</h3>
+                            <p>Distribution of reported violations</p>
+                        </div>
+
+                    </div>
+
+                    <div id="violationTypeSummary">
+
+                        <div class="empty-message">
+                            No violation data available
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Chart -->
+
+                <div class="dashboard-panel chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Violation Overview</h3>
+                            <p>Traffic violation statistics</p>
+                        </div>
+
+                    </div>
+
+                    <div class="chart-container">
+
+                        <canvas id="violationChart"></canvas>
+
+                    </div>
+
+                </div>
+
 
             </div>
 
         </section>
 
 
-        <!-- REPORT PAGE -->
 
-        <section id="report" class="page hidden">
+        <!-- ================================================= -->
+        <!-- =============== REPORT PAGE ===================== -->
+        <!-- ================================================= -->
 
-            <h2>Report Violation</h2>
+        <section id="report" class="page">
 
-            <p class="subtitle">
-                Submit a new traffic violation
-            </p>
+            <div class="page-header">
+
+                <div>
+                    <h2>Report Traffic Violation</h2>
+
+                    <p>
+                        Enter the details of the traffic violation.
+                    </p>
+                </div>
+
+            </div>
 
 
-            <div class="form-box">
+            <div class="form-card">
 
                 <form id="violationForm">
 
-                    <label>
-                        Vehicle Number
-                    </label>
-
-                    <input
-                        type="text"
-                        id="vehicleNumber"
-                        placeholder="Example: TS09AB1234"
-                        required
-                    >
+                    <div class="form-grid">
 
 
-                    <label>
-                        Vehicle Type
-                    </label>
+                        <!-- Vehicle Number -->
 
-                    <select id="vehicleType">
+                        <div class="form-group">
 
-                        <option>Car</option>
-                        <option>Bike</option>
-                        <option>Bus</option>
-                        <option>Truck</option>
-                        <option>Auto Rickshaw</option>
+                            <label for="vehicleNumber">
+                                Vehicle Number
+                            </label>
 
-                    </select>
+                            <input
+                                type="text"
+                                id="vehicleNumber"
+                                placeholder="Example: TS09AB1234"
+                                required
+                            >
 
-
-                    <label>
-                        Violation Type
-                    </label>
-
-                    <select id="violationType">
-
-                        <option>Signal Jumping</option>
-                        <option>No Helmet</option>
-                        <option>Wrong Parking</option>
-                        <option>Overspeeding</option>
-                        <option>Wrong Side Driving</option>
-                        <option>Mobile Phone Usage</option>
-
-                    </select>
+                        </div>
 
 
-                    <label>
-                        Priority
-                    </label>
+                        <!-- Vehicle Type -->
 
-                    <select id="priority">
+                        <div class="form-group">
 
-                        <option>Low</option>
-                        <option selected>Medium</option>
-                        <option>High</option>
+                            <label for="vehicleType">
+                                Vehicle Type
+                            </label>
 
-                    </select>
+                            <select id="vehicleType" required>
 
+                                <option value="">
+                                    Select Vehicle Type
+                                </option>
 
-                    <label>
-                        Date
-                    </label>
+                                <option value="Car">
+                                    Car
+                                </option>
 
-                    <input
-                        type="date"
-                        id="violationDate"
-                        required
-                    >
+                                <option value="Bike">
+                                    Bike
+                                </option>
 
+                                <option value="Auto Rickshaw">
+                                    Auto Rickshaw
+                                </option>
 
-                    <label>
-                        Time
-                    </label>
+                                <option value="Bus">
+                                    Bus
+                                </option>
 
-                    <input
-                        type="time"
-                        id="violationTime"
-                        required
-                    >
+                                <option value="Truck">
+                                    Truck
+                                </option>
 
+                                <option value="Other">
+                                    Other
+                                </option>
 
-                    <label>
-                        Location
-                    </label>
+                            </select>
 
-                    <input
-                        type="text"
-                        id="location"
-                        placeholder="Example: Hitech City"
-                        required
-                    >
+                        </div>
 
 
-                    <label>
-                        Description
-                    </label>
+                        <!-- Violation Type -->
 
-                    <textarea
-                        id="description"
-                        rows="5"
-                        placeholder="Describe the violation"
-                    ></textarea>
+                        <div class="form-group">
+
+                            <label for="violationType">
+                                Violation Type
+                            </label>
+
+                            <select id="violationType" required>
+
+                                <option value="">
+                                    Select Violation
+                                </option>
+
+                                <option value="Signal Jumping">
+                                    Signal Jumping
+                                </option>
+
+                                <option value="No Helmet">
+                                    No Helmet
+                                </option>
+
+                                <option value="Wrong Parking">
+                                    Wrong Parking
+                                </option>
+
+                                <option value="Speeding">
+                                    Speeding
+                                </option>
+
+                                <option value="No Seat Belt">
+                                    No Seat Belt
+                                </option>
+
+                                <option value="Drunk Driving">
+                                    Drunk Driving
+                                </option>
+
+                                <option value="Wrong Side Driving">
+                                    Wrong Side Driving
+                                </option>
+
+                            </select>
+
+                        </div>
 
 
-                    <button type="submit">
-                        Submit Violation
-                    </button>
+                        <!-- Priority -->
+
+                        <div class="form-group">
+
+                            <label for="priority">
+                                Priority
+                            </label>
+
+                            <select id="priority" required>
+
+                                <option value="">
+                                    Select Priority
+                                </option>
+
+                                <option value="Low">
+                                    Low
+                                </option>
+
+                                <option value="Medium">
+                                    Medium
+                                </option>
+
+                                <option value="High">
+                                    High
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Date -->
+
+                        <div class="form-group">
+
+                            <label for="violationDate">
+                                Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="violationDate"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Time -->
+
+                        <div class="form-group">
+
+                            <label for="violationTime">
+                                Time
+                            </label>
+
+                            <input
+                                type="time"
+                                id="violationTime"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Location -->
+
+                        <div class="form-group full-width">
+
+                            <label for="location">
+                                Location
+                            </label>
+
+                            <input
+                                type="text"
+                                id="location"
+                                placeholder="Example: Banjara Hills"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Description -->
+
+                        <div class="form-group full-width">
+
+                            <label for="description">
+                                Description
+                            </label>
+
+                            <textarea
+                                id="description"
+                                rows="5"
+                                placeholder="Enter details about the violation..."
+                            ></textarea>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- Buttons -->
+
+                    <div class="form-buttons">
+
+                        <button
+                            type="reset"
+                            class="btn-secondary"
+                        >
+                            Clear
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="btn-primary"
+                        >
+                            Submit Violation
+                        </button>
+
+                    </div>
 
                 </form>
 
@@ -263,130 +601,400 @@
         </section>
 
 
-        <!-- VIOLATIONS PAGE -->
 
-        <section id="violations" class="page hidden">
+        <!-- ================================================= -->
+        <!-- =============== VIOLATIONS PAGE ================= -->
+        <!-- ================================================= -->
 
-            <h2>Violations</h2>
+        <section id="violations" class="page">
 
-            <p class="subtitle">
-                View reported traffic violations
-            </p>
+            <div class="page-header">
 
+                <div>
+                    <h2>Traffic Violations</h2>
 
-            <input
-                type="text"
-                id="searchBox"
-                class="search"
-                placeholder="Search vehicle number or violation..."
-            >
-
-
-            <div class="table-box">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>ID</th>
-                            <th>Vehicle</th>
-                            <th>Type</th>
-                            <th>Priority</th>
-                            <th>Location</th>
-                            <th>Status</th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody id="violationTable">
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </section>
-
-
-        <!-- STATISTICS PAGE -->
-
-        <section id="statistics" class="page hidden">
-
-            <h2>Statistics</h2>
-
-            <p class="subtitle">
-                Traffic violation statistics
-            </p>
-
-
-            <div class="statistics-box">
-
-                <h3>Violation Summary</h3>
-
-                <p>
-                    Total Violations:
-                    <b id="statTotal">0</b>
-                </p>
-
-                <p>
-                    Pending:
-                    <b id="statPending">0</b>
-                </p>
-
-                <p>
-                    Resolved:
-                    <b id="statResolved">0</b>
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- PROFILE PAGE -->
-
-        <section id="profile" class="page hidden">
-
-            <h2>Profile</h2>
-
-            <p class="subtitle">
-                Administrator profile
-            </p>
-
-
-            <div class="profile-box">
-
-                <div class="big-avatar">
-                    A
+                    <p>
+                        View and manage all reported violations.
+                    </p>
                 </div>
 
-                <h2>Admin User</h2>
+                <button
+                    class="primary-button"
+                    onclick="showPage('report')"
+                >
+                    + Report Violation
+                </button>
 
-                <p>Traffic Officer</p>
+            </div>
 
-                <hr>
 
-                <p>
-                    <b>Email:</b>
-                    admin@traffic.com
-                </p>
+            <!-- Search -->
 
-                <p>
-                    <b>Role:</b>
-                    Administrator
-                </p>
+            <div class="search-card">
+
+                <div class="search-box">
+
+                    <span>🔎</span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search by vehicle number, violation or location..."
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Table -->
+
+            <div class="table-card">
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Vehicle</th>
+
+                                <th>Type</th>
+
+                                <th>Violation</th>
+
+                                <th>Priority</th>
+
+                                <th>Location</th>
+
+                                <th>Date</th>
+
+                                <th>Status</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="violationsTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             </div>
 
         </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- =============== STATISTICS PAGE ================== -->
+        <!-- ================================================= -->
+
+        <section id="statistics" class="page">
+
+            <div class="page-header">
+
+                <div>
+
+                    <h2>Traffic Statistics</h2>
+
+                    <p>
+                        Analyze traffic violation data.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="statistics-grid">
+
+
+                <div class="dashboard-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>Violation Distribution</h3>
+
+                            <p>
+                                Violations by type
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chart-container">
+
+                        <canvas id="statisticsChart"></canvas>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>System Summary</h3>
+
+                            <p>
+                                Current violation status
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-list">
+
+                        <div class="summary-item">
+
+                            <span>Total Violations</span>
+
+                            <strong id="statsTotal">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span>Pending</span>
+
+                            <strong id="statsPending">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span>Under Review</span>
+
+                            <strong id="statsReview">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span>Resolved</span>
+
+                            <strong id="statsResolved">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- ================= PROFILE PAGE ================== -->
+        <!-- ================================================= -->
+
+        <section id="profile" class="page">
+
+            <div class="page-header">
+
+                <div>
+
+                    <h2>Profile</h2>
+
+                    <p>
+                        Manage your officer profile.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-card">
+
+
+                <div class="profile-header">
+
+                    <div class="large-avatar">
+                        AU
+                    </div>
+
+                    <div>
+
+                        <h2>Admin User</h2>
+
+                        <p>Traffic Officer</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-details">
+
+
+                    <div class="profile-field">
+
+                        <label>Full Name</label>
+
+                        <p>Admin User</p>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>Role</label>
+
+                        <p>Traffic Officer</p>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>Email</label>
+
+                        <p>admin@smarttraffic.com</p>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>Department</label>
+
+                        <p>Traffic Management Department</p>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>System Access</label>
+
+                        <p class="online-text">
+                            ● Active
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================================================= -->
+    <!-- ================ VIOLATION MODAL ================= -->
+    <!-- ================================================= -->
+
+    <div
+        id="violationModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2>Violation Details</h2>
+
+                    <p>
+                        Complete information about this violation.
+                    </p>
+
+                </div>
+
+                <button
+                    class="close-button"
+                    onclick="closeModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                id="violationDetails"
+                class="violation-details"
+            >
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn-secondary"
+                    onclick="closeModal()"
+                >
+                    Close
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
 
+
+
+    <!-- ================================================= -->
+    <!-- ================= NOTIFICATION =================== -->
+    <!-- ================================================= -->
+
+    <div
+        id="notification"
+        class="notification"
+    >
+
+        <span id="notificationMessage">
+            Notification
+        </span>
+
+    </div>
+
+
+
+    <!-- JavaScript -->
 
     <script src="script.js"></script>
 
