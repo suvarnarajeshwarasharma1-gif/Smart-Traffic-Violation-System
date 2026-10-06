@@ -1,0 +1,1017 @@
+/* =========================================
+   SMART TRAFFIC VIOLATION SYSTEM
+   PROFESSIONAL UI
+========================================= */
+
+
+/* =========================================
+   1. RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+
+/* =========================================
+   2. SIDEBAR
+========================================= */
+
+.sidebar {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 260px;
+    height: 100vh;
+
+    background: #0b1220;
+
+    color: white;
+
+    padding: 24px 16px;
+
+    border-right: 1px solid #1f2937;
+
+    z-index: 1000;
+}
+
+
+/* LOGO */
+
+.sidebar h2 {
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 12px;
+
+    margin-bottom: 30px;
+
+    font-size: 19px;
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+}
+
+
+.sidebar h2::first-letter {
+    font-size: 27px;
+}
+
+
+/* NAVIGATION */
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+
+    min-height: 48px;
+
+    padding: 0 15px;
+
+    margin-bottom: 7px;
+
+    border-radius: 10px;
+
+    color: #9ca9bd;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: all 0.25s ease;
+}
+
+
+/* Hover */
+
+.sidebar a:hover {
+    background: #17243a;
+
+    color: white;
+
+    transform: translateX(3px);
+}
+
+
+/* Active-looking first item */
+
+.sidebar a:first-of-type {
+    background: #2563eb;
+
+    color: white;
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+
+/* =========================================
+   3. MAIN CONTENT
+========================================= */
+
+.main {
+    margin-left: 260px;
+
+    min-height: 100vh;
+
+    width: calc(100% - 260px);
+}
+
+
+/* =========================================
+   4. TOP HEADER
+========================================= */
+
+header {
+    height: 82px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-bottom: 1px solid #e7ebf2;
+
+    padding: 0 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 500;
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* HEADER TITLE */
+
+header h1 {
+    font-size: 19px;
+
+    font-weight: 700;
+
+    color: #172033;
+
+    margin-bottom: 5px;
+}
+
+
+header p {
+    font-size: 13px;
+
+    color: #7b8798;
+}
+
+
+/* =========================================
+   5. USER AREA
+========================================= */
+
+.user {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 6px 10px;
+
+    border-radius: 10px;
+
+    transition: 0.2s;
+}
+
+
+.user:hover {
+    background: #f4f6fa;
+}
+
+
+.avatar {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #4f46e5
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 5px 15px rgba(37, 99, 235, 0.25);
+}
+
+
+.user b {
+    display: block;
+
+    font-size: 13px;
+
+    color: #172033;
+}
+
+
+.user small {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 11px;
+
+    color: #8994a5;
+}
+
+
+/* =========================================
+   6. PAGE
+========================================= */
+
+.page {
+    padding: 34px;
+}
+
+
+.page > h2 {
+    font-size: 27px;
+
+    font-weight: 700;
+
+    color: #172033;
+
+    margin-bottom: 6px;
+}
+
+
+.subtitle {
+    color: #7b8798;
+
+    font-size: 14px;
+
+    margin-bottom: 28px;
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+/* =========================================
+   7. DASHBOARD CARDS
+========================================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+
+.card {
+    position: relative;
+
+    background: white;
+
+    min-height: 150px;
+
+    padding: 22px;
+
+    border: 1px solid #e9edf3;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 4px 16px rgba(15, 23, 42, 0.04);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+    height: 80px;
+
+    right: -25px;
+    bottom: -25px;
+
+    background: #eff6ff;
+
+    border-radius: 50%;
+}
+
+
+.card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(15, 23, 42, 0.09);
+}
+
+
+.card span {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 45px;
+    height: 45px;
+
+    background: #eff6ff;
+
+    border-radius: 11px;
+
+    font-size: 21px;
+
+    margin-bottom: 18px;
+}
+
+
+.card h3 {
+    font-size: 13px;
+
+    font-weight: 500;
+
+    color: #7b8798;
+
+    margin-bottom: 6px;
+}
+
+
+.card h2 {
+    font-size: 27px;
+
+    color: #172033;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   8. WELCOME / INFORMATION BOX
+========================================= */
+
+.welcome-box {
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d4ed8,
+            #2563eb,
+            #3b82f6
+        );
+
+    color: white;
+
+    padding: 32px;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 12px 30px rgba(37, 99, 235, 0.18);
+}
+
+
+.welcome-box::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -70px;
+    top: -90px;
+
+    border: 35px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 50%;
+}
+
+
+.welcome-box h2 {
+    color: white;
+
+    font-size: 21px;
+
+    margin-bottom: 10px;
+}
+
+
+.welcome-box p {
+    max-width: 650px;
+
+    color: #dbeafe;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   9. FORM CARD
+========================================= */
+
+.form-box {
+    max-width: 900px;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 14px;
+
+    border: 1px solid #e8ecf2;
+
+    box-shadow:
+        0 5px 18px rgba(15, 23, 42, 0.05);
+}
+
+
+.form-box label {
+    display: block;
+
+    margin-top: 20px;
+
+    margin-bottom: 8px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #374151;
+}
+
+
+.form-box input,
+.form-box select,
+.form-box textarea {
+
+    width: 100%;
+
+    padding: 12px 13px;
+
+    background: #fbfcfe;
+
+    border: 1px solid #dbe1ea;
+
+    border-radius: 8px;
+
+    color: #172033;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+.form-box input:focus,
+.form-box select:focus,
+.form-box textarea:focus {
+
+    background: white;
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+.form-box textarea {
+    resize: vertical;
+
+    min-height: 110px;
+}
+
+
+/* SUBMIT BUTTON */
+
+.form-box button {
+
+    margin-top: 25px;
+
+    padding: 12px 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    border: none;
+
+    border-radius: 8px;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 16px rgba(37, 99, 235, 0.20);
+
+    transition: 0.25s;
+}
+
+
+.form-box button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(37, 99, 235, 0.27);
+}
+
+
+.form-box button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   10. SEARCH
+========================================= */
+
+.search {
+
+    width: 360px;
+
+    max-width: 100%;
+
+    padding: 12px 15px;
+
+    background: white;
+
+    border: 1px solid #dbe1ea;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    margin-bottom: 18px;
+
+    transition: 0.2s;
+}
+
+
+.search:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================================
+   11. TABLE
+========================================= */
+
+.table-box {
+
+    background: white;
+
+    border: 1px solid #e8ecf2;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 18px rgba(15, 23, 42, 0.04);
+}
+
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+
+th {
+    background: #f8fafc;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+
+    padding: 15px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #e5e9ef;
+}
+
+
+td {
+    padding: 16px 15px;
+
+    font-size: 13px;
+
+    color: #475569;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+
+tbody tr {
+    transition: 0.2s;
+}
+
+
+tbody tr:hover {
+    background: #f8faff;
+}
+
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================
+   12. STATISTICS
+========================================= */
+
+.statistics-box {
+
+    max-width: 650px;
+
+    background: white;
+
+    padding: 28px;
+
+    border-radius: 14px;
+
+    border: 1px solid #e8ecf2;
+
+    box-shadow:
+        0 5px 18px rgba(15, 23, 42, 0.04);
+}
+
+
+.statistics-box h3 {
+
+    font-size: 18px;
+
+    margin-bottom: 18px;
+
+    color: #172033;
+}
+
+
+.statistics-box p {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 16px 0;
+
+    border-bottom: 1px solid #edf0f4;
+
+    font-size: 14px;
+
+    color: #64748b;
+}
+
+
+.statistics-box p:last-child {
+    border-bottom: none;
+}
+
+
+.statistics-box b {
+    color: #2563eb;
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   13. PROFILE
+========================================= */
+
+.profile-box {
+
+    max-width: 500px;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 14px;
+
+    border: 1px solid #e8ecf2;
+
+    text-align: center;
+
+    box-shadow:
+        0 5px 18px rgba(15, 23, 42, 0.04);
+}
+
+
+.big-avatar {
+
+    width: 90px;
+    height: 90px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #4f46e5
+        );
+
+    color: white;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.20);
+}
+
+
+.profile-box h2 {
+    font-size: 21px;
+
+    margin-bottom: 5px;
+}
+
+
+.profile-box > p {
+    color: #7b8798;
+
+    font-size: 14px;
+}
+
+
+.profile-box hr {
+
+    border: none;
+
+    border-top: 1px solid #edf0f4;
+
+    margin: 25px 0;
+}
+
+
+.profile-box p:not(:first-child) {
+
+    padding: 9px 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   14. SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+
+/* =========================================
+   15. RESPONSIVE — TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .cards {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================
+   16. RESPONSIVE — MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+
+        width: 72px;
+
+        padding: 20px 8px;
+    }
+
+
+    .sidebar h2 {
+
+        justify-content: center;
+
+        font-size: 0;
+    }
+
+
+    .sidebar h2::first-letter {
+
+        font-size: 25px;
+    }
+
+
+    .sidebar a {
+
+        justify-content: center;
+
+        font-size: 0;
+
+        padding: 13px 5px;
+    }
+
+
+    .sidebar a::first-letter {
+
+        font-size: 21px;
+    }
+
+
+    .main {
+
+        margin-left: 72px;
+
+        width: calc(100% - 72px);
+    }
+
+
+    header {
+
+        height: 72px;
+
+        padding: 0 18px;
+    }
+
+
+    header h1 {
+
+        font-size: 15px;
+    }
+
+
+    header p {
+
+        display: none;
+    }
+
+
+    .user {
+
+        display: none;
+    }
+
+
+    .page {
+
+        padding: 22px 16px;
+    }
+
+
+    .page > h2 {
+
+        font-size: 23px;
+    }
+
+
+    .cards {
+
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+
+    .form-box {
+
+        padding: 20px;
+    }
+
+
+    .table-box {
+
+        overflow-x: auto;
+    }
+
+
+    table {
+
+        min-width: 750px;
+    }
+
+
+    .welcome-box {
+
+        padding: 25px;
+    }
+
+}

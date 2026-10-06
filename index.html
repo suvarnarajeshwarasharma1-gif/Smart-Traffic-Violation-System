@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Traffic Violation System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h2>🚦 Smart Traffic</h2>
+
+        <a href="#" onclick="showPage('dashboard')">
+            🏠 Dashboard
+        </a>
+
+        <a href="#" onclick="showPage('report')">
+            📝 Report Violation
+        </a>
+
+        <a href="#" onclick="showPage('violations')">
+            🚨 Violations
+        </a>
+
+        <a href="#" onclick="showPage('statistics')">
+            📊 Statistics
+        </a>
+
+        <a href="#" onclick="showPage('profile')">
+            👤 Profile
+        </a>
+
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+
+    <div class="main">
+
+        <!-- HEADER -->
+
+        <header>
+
+            <div>
+
+                <h1>Smart Traffic Violation System</h1>
+
+                <p>
+                    Monitor and manage traffic violations
+                </p>
+
+            </div>
+
+            <div class="user">
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <div>
+                    <b>Admin User</b>
+                    <small>Traffic Officer</small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+
+        <section id="dashboard" class="page">
+
+            <h2>Dashboard</h2>
+
+            <p class="subtitle">
+                Overview of traffic violation reports
+            </p>
+
+
+            <div class="cards">
+
+                <div class="card">
+                    <span>🚨</span>
+                    <h3>Total Violations</h3>
+                    <h2 id="totalCount">0</h2>
+                </div>
+
+
+                <div class="card">
+                    <span>⏳</span>
+                    <h3>Pending</h3>
+                    <h2 id="pendingCount">0</h2>
+                </div>
+
+
+                <div class="card">
+                    <span>🔍</span>
+                    <h3>Under Review</h3>
+                    <h2 id="reviewCount">0</h2>
+                </div>
+
+
+                <div class="card">
+                    <span>✅</span>
+                    <h3>Resolved</h3>
+                    <h2 id="resolvedCount">0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="welcome-box">
+
+                <h2>Welcome to Smart Traffic 🚦</h2>
+
+                <p>
+                    This system helps traffic officers report,
+                    monitor and manage traffic violations
+                    efficiently.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- REPORT PAGE -->
+
+        <section id="report" class="page hidden">
+
+            <h2>Report Violation</h2>
+
+            <p class="subtitle">
+                Submit a new traffic violation
+            </p>
+
+
+            <div class="form-box">
+
+                <form id="violationForm">
+
+                    <label>
+                        Vehicle Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="vehicleNumber"
+                        placeholder="Example: TS09AB1234"
+                        required
+                    >
+
+
+                    <label>
+                        Vehicle Type
+                    </label>
+
+                    <select id="vehicleType">
+
+                        <option>Car</option>
+                        <option>Bike</option>
+                        <option>Bus</option>
+                        <option>Truck</option>
+                        <option>Auto Rickshaw</option>
+
+                    </select>
+
+
+                    <label>
+                        Violation Type
+                    </label>
+
+                    <select id="violationType">
+
+                        <option>Signal Jumping</option>
+                        <option>No Helmet</option>
+                        <option>Wrong Parking</option>
+                        <option>Overspeeding</option>
+                        <option>Wrong Side Driving</option>
+                        <option>Mobile Phone Usage</option>
+
+                    </select>
+
+
+                    <label>
+                        Priority
+                    </label>
+
+                    <select id="priority">
+
+                        <option>Low</option>
+                        <option selected>Medium</option>
+                        <option>High</option>
+
+                    </select>
+
+
+                    <label>
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="violationDate"
+                        required
+                    >
+
+
+                    <label>
+                        Time
+                    </label>
+
+                    <input
+                        type="time"
+                        id="violationTime"
+                        required
+                    >
+
+
+                    <label>
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        placeholder="Example: Hitech City"
+                        required
+                    >
+
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        rows="5"
+                        placeholder="Describe the violation"
+                    ></textarea>
+
+
+                    <button type="submit">
+                        Submit Violation
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- VIOLATIONS PAGE -->
+
+        <section id="violations" class="page hidden">
+
+            <h2>Violations</h2>
+
+            <p class="subtitle">
+                View reported traffic violations
+            </p>
+
+
+            <input
+                type="text"
+                id="searchBox"
+                class="search"
+                placeholder="Search vehicle number or violation..."
+            >
+
+
+            <div class="table-box">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Vehicle</th>
+                            <th>Type</th>
+                            <th>Priority</th>
+                            <th>Location</th>
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="violationTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATISTICS PAGE -->
+
+        <section id="statistics" class="page hidden">
+
+            <h2>Statistics</h2>
+
+            <p class="subtitle">
+                Traffic violation statistics
+            </p>
+
+
+            <div class="statistics-box">
+
+                <h3>Violation Summary</h3>
+
+                <p>
+                    Total Violations:
+                    <b id="statTotal">0</b>
+                </p>
+
+                <p>
+                    Pending:
+                    <b id="statPending">0</b>
+                </p>
+
+                <p>
+                    Resolved:
+                    <b id="statResolved">0</b>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROFILE PAGE -->
+
+        <section id="profile" class="page hidden">
+
+            <h2>Profile</h2>
+
+            <p class="subtitle">
+                Administrator profile
+            </p>
+
+
+            <div class="profile-box">
+
+                <div class="big-avatar">
+                    A
+                </div>
+
+                <h2>Admin User</h2>
+
+                <p>Traffic Officer</p>
+
+                <hr>
+
+                <p>
+                    <b>Email:</b>
+                    admin@traffic.com
+                </p>
+
+                <p>
+                    <b>Role:</b>
+                    Administrator
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
